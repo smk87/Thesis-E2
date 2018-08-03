@@ -37,9 +37,6 @@ if (isset($_GET['logout'])) {
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-        <style>
-        </style>
-
     </head>
 
     <body class="fix-sidebar fix-header card-no-border">
@@ -63,14 +60,13 @@ if (isset($_GET['logout'])) {
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.php">
+                        <a class="navbar-brand" href="index_a.php">
                             <!-- Logo icon -->
                             <b>
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
                                 <img src="../assets/images/MIST-logo.png" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
-                                <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
@@ -175,18 +171,18 @@ if (isset($_GET['logout'])) {
                                                     <p class="text-muted">
                                                         <?php echo $_SESSION['username']; ?>
                                                     </p>
-                                                    <a href="profile.php" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                                    <a href="profile_a.php" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                                 </div>
                                             </div>
                                         </li>
                                         <li role="separator" class="divider"></li>
                                         <li>
-                                            <a href="profile.php">
+                                            <a href="profile_a.php">
                                                 <i class="ti-user"></i> My Profile</a>
                                         </li>
                                         <li role="separator" class="divider"></li>
                                         <li>
-                                            <a href="index.php?logout='1'">
+                                            <a href="index_a.php?logout='1'">
                                                 <i class="fa fa-power-off"></i> Logout</a>
                                         </li>
                                     </ul>
@@ -217,10 +213,10 @@ if (isset($_GET['logout'])) {
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu animated flipInY">
-                                <a href="profile.php" class="dropdown-item">
+                                <a href="profile_a.php" class="dropdown-item">
                                     <i class="ti-user"></i> My Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="index.php?logout='1'" class="dropdown-item">
+                                <a href="index_a.php?logout='1'" class="dropdown-item">
                                     <i class="fa fa-power-off"></i> Logout</a>
                             </div>
                         </div>
@@ -230,7 +226,7 @@ if (isset($_GET['logout'])) {
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav">
                             <li>
-                                <a href="index.php" aria-expanded="false">
+                                <a href="index_a.php" aria-expanded="false">
                                     <i class="mdi mdi-gauge"></i>
                                     <span class="hide-menu">Dashboard</span>
                                 </a>
@@ -240,42 +236,29 @@ if (isset($_GET['logout'])) {
                                     <i class="mdi mdi-bank"></i>
                                     <span class="hide-menu">Bills</span>
                                 </a>
-                                <ul aria-expanded="false" class="collapse">
+                                <ul class="sidenav-second-level collapse" id="collapseComponents">
                                     <li>
-                                        <a href="tf.php">Tution Fees</a>
+                                        <a href="usf.php">Add Student Fees</a>
                                     </li>
                                     <li>
-                                        <a href="fine.php">Fine</a>
+                                        <a href="csf.php">Update Student Fees</a>
                                     </li>
                                     <li>
-                                        <a href="hb.php">Hall Bill</a>
+                                        <a href="vsf.php">View Student Fees</a>
                                     </li>
-                                    <li>
-                                        <a href="mb.php">Mess Bill</a>
-                                    </li>
-                            </li>
-                            <li>
-                                <a href="oth.php">Other Bill</a>
-                            </li>
-                            </ul>
+                                </ul>
                             </li>
                             <li>
                                 <a class="has-arrow " href="#" aria-expanded="false">
-                                    <i class="mdi mdi-email"></i>
-                                    <span class="hide-menu">Applications</span>
+                                    <i class="mdi mdi-database"></i>
+                                    <span class="hide-menu">Student Base</span>
                                 </a>
-                                <ul aria-expanded="false" class="collapse">
+                                <ul class="sidenav-second-level collapse" id="collapseExamplePages">
                                     <li>
-                                        <a href="sfa.php">Semister Fee Application</a>
+                                        <a href="usi.php">Update Student Info</a>
                                     </li>
                                     <li>
-                                        <a href="hba.php">Hall Bill Application</a>
-                                    </li>
-                                    <li>
-                                        <a href="mba.php">Mess Bill Aplication</a>
-                                    </li>
-                                    <li>
-                                        <a href="otha.php">Other Application</a>
+                                        <a href="vsi.php">View Student Info</a>
                                     </li>
                                 </ul>
                             </li>
@@ -305,11 +288,11 @@ if (isset($_GET['logout'])) {
                         <i class="mdi mdi-view-dashboard"></i>
                     </a>
                     <!-- item-->
-                    <a href="profile.php" class="link" data-toggle="tooltip" title="Profile">
+                    <a href="profile_a.php" class="link" data-toggle="tooltip" title="Profile">
                         <i class="mdi mdi-account-box-outline"></i>
                     </a>
                     <!-- item-->
-                    <a href="index.php?logout='1'" class="link" data-toggle="tooltip" title="Logout">
+                    <a href="index_a.php?logout='1'" class="link" data-toggle="tooltip" title="Logout">
                         <i class="mdi mdi-power"></i>
                     </a>
                 </div>
@@ -336,7 +319,7 @@ if (isset($_GET['logout'])) {
                                 <li class="breadcrumb-item">
                                     <a href="javascript:void(0)">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Tuition Fees</li>
+                                <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div>
 
@@ -351,86 +334,7 @@ if (isset($_GET['logout'])) {
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <div class="col-md-12">
-                                        <?php 
-                             /* Attempt MySQL server connection. Assuming you are running MySQL
-        server with default setting (user 'root' with no password) */
-                                        $mysqli = new mysqli("localhost", "root", "", "th");
 
-        // Check connection
-                                        if ($mysqli === false) {
-                                            die("ERROR: Could not connect. " . $mysqli->connect_error);
-                                        }
-
-        //Printing values
-                                        $tid = $_SESSION['username'];
-                                        $q = "SELECT bill_stdid,bill_type,bill_info,bill_amt,bill_duedate,bill_id FROM bill WHERE bill_stdid='$tid' AND bill_type='Tuition' AND bill_sts='Not Paid'";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-
-                                        <div class="row">
-
-                                        </div>
-
-                                        <form action="getway.php" method="POST">
-                                            <div class="form-group row">
-                                                <label for="username" class="col-4 col-form-label">Student ID</label>
-                                                <div class="col-8">
-                                                    <input id="username" name="bill_stdid" value="<?php echo $row['bill_stdid']; ?>" class="form-control here" style="font-weight: bold;"
-                                                        type="text">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="name" class="col-4 col-form-label">Bill Type</label>
-                                                <div class="col-8">
-                                                    <input id="name" name="billtype" value="<?php echo $row['bill_type']; ?>" class="form-control here" style="font-weight: bold;"
-                                                        type="text">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="text" class="col-4 col-form-label">Bill Info</label>
-                                                <div class="col-8">
-                                                    <input id="text" name="billinfo" value="<?php echo $row['bill_info']; ?>" class="form-control here" style="font-weight: bold;"
-                                                        type="text">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="text" class="col-4 col-form-label">Bill Amount</label>
-                                                <div class="col-8">
-                                                    <input id="text" name="billamt" value="<?php echo $row['bill_amt']; ?>" class="form-control here" style="font-weight: bold;"
-                                                        type="text">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="email" class="col-4 col-form-label">Bill Due Date</label>
-                                                <div class="col-8">
-                                                    <input id="email" name="bill_duedate" value="<?php echo $row['bill_duedate']; ?>" class="form-control here" style="font-weight: bold;"
-                                                        type="text">
-                                                </div>
-                                            </div>
-
-                                            <input type="hidden" name="bill_id" value="<?php echo $row['bill_id']; ?>">
-
-                                            <div class="form-group row">
-                                                <div class="offset-5 col-8">
-                                                    <button name="submit" type="submit" class="btn btn-primary">Pay Now</button>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                        <br />
-                                        <br />
-
-
-                                        <?php
-
-                                    }
-
-          // Close connection
-                                    $mysqli->close();
-                                    ?>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,35 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    // Enable/disable default HTML formatter
+    "html.format.enable": false,
+    // Enable/disable default JSON formatter (requires restart)
+    "json.format.enable": true,
+    // Enable/disable default JavaScript formatter.
+    "javascript.format.enable": false,
+    // Enable/disable default TypeScript formatter.
+    "typescript.format.enable": true,
+    "beautify.language": {
+        "js": {
+            "type": [
+                "javascript",
+                "json"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautifyrc"
+            ]
+            // "ext": ["js", "json"]
+            // ^^ to set extensions to be beautified using the javascript beautifier
+        },
+        "css": [
+            "css",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html"
+        ]
+        // ^^ providing just an array sets the VS Code file type
+    }
+}
