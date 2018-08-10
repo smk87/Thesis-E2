@@ -169,7 +169,7 @@ if (isset($_GET['logout'])) {
                                                     <h4>
                                                         <?php echo $_SESSION['name']; ?>
                                                     </h4>
-                                                    <p class="text-muted">varun@gmail.com</p>
+                                                    <p class="text-muted"><?php echo $_SESSION['username']; ?></p>
                                                     <a href="profile.php" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
                                                 </div>
                                             </div>
@@ -181,7 +181,7 @@ if (isset($_GET['logout'])) {
                                         </li>
                                         <li role="separator" class="divider"></li>
                                         <li>
-                                            <a href="#">
+                                            <a href="index_a.php?logout='1'">
                                                 <i class="fa fa-power-off"></i> Logout</a>
                                         </li>
                                     </ul>
@@ -215,7 +215,7 @@ if (isset($_GET['logout'])) {
                                 <a href="profile.php" class="dropdown-item">
                                     <i class="ti-user"></i> My Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a href="login.html" class="dropdown-item">
+                                <a href="index_a.php?logout='1'" class="dropdown-item">
                                     <i class="fa fa-power-off"></i> Logout</a>
                             </div>
                         </div>
@@ -284,7 +284,7 @@ if (isset($_GET['logout'])) {
                                         <a href="http://mist.ac.bd/">MIST</a>
                                     </li>
                                     <li>
-                                        <a href="https://ems.mist.ac.bd/">EMSl</a>
+                                        <a href="https://ems.mist.ac.bd/">EMS</a>
                                     </li>
                                 </ul>
                             </li>
@@ -304,7 +304,7 @@ if (isset($_GET['logout'])) {
                         <i class="mdi mdi-account-box-outline"></i>
                     </a>
                     <!-- item-->
-                    <a href="" class="link" data-toggle="tooltip" title="Logout">
+                    <a href="index_a.php?logout='1'" class="link" data-toggle="tooltip" title="Logout">
                         <i class="mdi mdi-power"></i>
                     </a>
                 </div>

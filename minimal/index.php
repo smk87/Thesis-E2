@@ -285,7 +285,7 @@ if (isset($_GET['logout'])) {
                                         <a href="http://mist.ac.bd/">MIST</a>
                                     </li>
                                     <li>
-                                        <a href="https://ems.mist.ac.bd/">EMSl</a>
+                                        <a href="https://ems.mist.ac.bd/">EMS</a>
                                     </li>
                                 </ul>
                             </li>

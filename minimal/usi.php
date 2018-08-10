@@ -314,12 +314,12 @@ if (isset($_GET['logout'])) {
                     <!-- ============================================================== -->
                     <div class="row page-titles">
                         <div class="col-md-6 col-8 align-self-center">
-                            <h3 class="text-themecolor m-b-0 m-t-0">View Student Info</h3>
+                            <h3 class="text-themecolor m-b-0 m-t-0">Update/Delete/Create Student</h3>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="javascript:void(0)">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">View Student Info</li>
+                                <li class="breadcrumb-item active">Update/Delete/Create Student</li>
                             </ol>
                         </div>
 
@@ -334,25 +334,9 @@ if (isset($_GET['logout'])) {
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <form action="vsi_show.php" method="post">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <form>
-                                                    <div class="form-group row">
-                                                        <label for="username" class="col-2 col-form-label">Student ID</label>
-                                                        <div class="col-8">
-                                                            <input type="text" id="fname" name="sid" required placeholder="Enter ID"> </div>
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <div class="offset-2 col-8">
-                                                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <center>
+                                        <iframe src="s.php" style="height:800px;width:1300px;border:none;"></iframe>
+                                    </center>
                                 </div>
                             </div>
                         </div>
