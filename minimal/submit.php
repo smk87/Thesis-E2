@@ -1,4 +1,3 @@
-
 <?php
 
 //check whether stripe token is not empty
@@ -139,18 +138,7 @@ while($row=mysqli_fetch_array($r)){
 
 //Set Refresh header using PHP.
 
-if($billtype=="Tuition"){
-    header( "refresh:5;url=tf.php" );
-}
-if($billtype=="Fine"){
-    header( "refresh:5;url=fine.php" );
-}
-if($billtype=="Hall Bill"){
-    header( "refresh:5;url=hb.php" );
-}
-if($billtype=="Mess Bill"){
-    header( "refresh:5;url=mb.php" );
-}
+header( "refresh:5;url=bills.php" );
 
 ?>
 <h1>This page will redirect in 5 seconds...</h1>

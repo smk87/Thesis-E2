@@ -232,28 +232,10 @@ if (isset($_GET['logout'])) {
                                 </a>
                             </li>
                             <li>
-                                <a class="has-arrow " href="#" aria-expanded="false">
+                                <a href="bills.php" aria-expanded="false">
                                     <i class="mdi mdi-bank"></i>
                                     <span class="hide-menu">Bills</span>
                                 </a>
-                                <ul aria-expanded="false" class="collapse">
-                                    <li>
-                                        <a href="tf.php">Tution Fees</a>
-                                    </li>
-                                    <li>
-                                        <a href="fine.php">Fine</a>
-                                    </li>
-                                    <li>
-                                        <a href="hb.php">Hall Bill</a>
-                                    </li>
-                                    <li>
-                                        <a href="mb.php">Mess Bill</a>
-                                    </li>
-                            </li>
-                            <li>
-                                <a href="oth.php">Other Bill</a>
-                            </li>
-                            </ul>
                             </li>
                             <li>
                                 <a class="has-arrow " href="#" aria-expanded="false">
@@ -297,7 +279,7 @@ if (isset($_GET['logout'])) {
                 <!-- Bottom points-->
                 <div class="sidebar-footer">
                     <!-- item-->
-                    <a href="" class="link" data-toggle="tooltip" title="Dashboard">
+                    <a href="index.php" class="link" data-toggle="tooltip" title="Dashboard">
                         <i class="mdi mdi-view-dashboard"></i>
                     </a>
                     <!-- item-->

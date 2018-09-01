@@ -37,6 +37,9 @@ if (isset($_GET['logout'])) {
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+    <style>
+    </style>
+
 </head>
 
 <body class="fix-sidebar fix-header card-no-border">
@@ -184,7 +187,7 @@ if (isset($_GET['logout'])) {
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
-                                        <a href="index_a.php?logout='1'">
+                                        <a href="index.php?logout='1'">
                                             <i class="fa fa-power-off"></i> Logout</a>
                                     </li>
                                 </ul>
@@ -219,7 +222,7 @@ if (isset($_GET['logout'])) {
                             <a href="profile.php" class="dropdown-item">
                                 <i class="ti-user"></i> My Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a href="index_a.php?logout='1'" class="dropdown-item">
+                            <a href="index.php?logout='1'" class="dropdown-item">
                                 <i class="fa fa-power-off"></i> Logout</a>
                         </div>
                     </div>
@@ -290,7 +293,7 @@ if (isset($_GET['logout'])) {
                     <i class="mdi mdi-account-box-outline"></i>
                 </a>
                 <!-- item-->
-                <a href="index_a.php?logout='1'" class="link" data-toggle="tooltip" title="Logout">
+                <a href="index.php?logout='1'" class="link" data-toggle="tooltip" title="Logout">
                     <i class="mdi mdi-power"></i>
                 </a>
             </div>
@@ -312,12 +315,12 @@ if (isset($_GET['logout'])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Bills</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">Home</a>
                             </li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Bills</li>
                         </ol>
                     </div>
 
@@ -329,13 +332,146 @@ if (isset($_GET['logout'])) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
+
                     <div class="col-12">
+
                         <div class="card">
                             <div class="card-block">
 
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Student ID</th>
+                                                <th>Bill Type</th>
+                                                <th>Bill Info</th>
+                                                <th>Bill Amount</th>
+                                                <th>Bill Due Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php 
+                             /* Attempt MySQL server connection. Assuming you are running MySQL
+        server with default setting (user 'root' with no password) */
+                                        $mysqli = new mysqli("localhost", "root", "", "th");
+
+        // Check connection
+                                        if ($mysqli === false) {
+                                            die("ERROR: Could not connect. " . $mysqli->connect_error);
+                                        }
+
+        //Printing values
+                                        $tid = $_SESSION['username'];
+                                        $q = "SELECT * FROM bill WHERE bill_stdid='$tid' ORDER BY bill_duedate DESC";
+                                        $r = mysqli_query($mysqli, $q);
+                                        while ($row = mysqli_fetch_array($r)) {
+                                            ?>
+
+                                            <tr>
+                                                <td><a>
+                                                        <?php echo $row['bill_stdid']; ?></a></td>
+                                                <td>
+                                                    <?php echo $row['bill_type']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['bill_info']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['bill_amt']; ?>
+                                                </td>
+                                                <td><span class="text-muted"><i class="fa fa-clock-o"></i>
+                                                        <?php echo $row['bill_duedate']; ?> </span>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                if($row['bill_sts']=='Paid'){?>
+                                                    <div class="label label-table label-success">Paid</div>
+                                                    <?php }
+                                                    else{
+                                                    ?>
+                                                    <div class="label label-table label-danger">Not Paid</div>
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <form action="getway.php" method="POST">
+
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="username" name="bill_stdid"
+                                                                    value="<?php echo $row['bill_stdid']; ?>" class="form-control here"
+                                                                    style="font-weight: bold;" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="name" name="billtype" value="<?php echo $row['bill_type']; ?>"
+                                                                    class="form-control here" style="font-weight: bold;"
+                                                                    type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="text" name="billinfo" value="<?php echo $row['bill_info']; ?>"
+                                                                    class="form-control here" style="font-weight: bold;"
+                                                                    type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="text" name="billamt" value="<?php echo $row['bill_amt']; ?>"
+                                                                    class="form-control here" style="font-weight: bold;"
+                                                                    type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="email" name="bill_duedate"
+                                                                    value="<?php echo $row['bill_duedate']; ?>" class="form-control here"
+                                                                    style="font-weight: bold;" type="text">
+                                                            </div>
+                                                        </div>
+
+                                                        <input type="hidden" name="bill_id" value="<?php echo $row['bill_id']; ?>">
+
+                                                        <?php if($row['bill_sts']=='Not Paid'){ ?>
+                                                        <div class="form-group row">
+                                                            <div class="offset-0 col-8">
+                                                                <button name="submit" type="submit" class="btn btn-primary">Pay
+                                                                    Now</button>
+                                                            </div>
+                                                        </div>
+                                                        <?php }
+                                                        else{
+                                                             ?>
+                                                        <div class="form-group row">
+                                                            <div class="offset-0 col-8">
+                                                                <br>
+                                                            </div>
+                                                        </div>
+                                                        <?php } ?>
+
+                                                    </form>
+                                                </td>
+                                            </tr>
+
+                                            <?php
+
+                                    }
+
+          // Close connection
+                                    $mysqli->close();
+                                    ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -344,130 +480,7 @@ if (isset($_GET['logout'])) {
                 <!-- Right sidebar -->
                 <!-- ============================================================== -->
                 <!-- .right-sidebar -->
-                <div class="right-sidebar">
-                    <div class="slimscrollright">
-                        <div class="rpanel-title"> Service Panel
-                            <span>
-                                <i class="ti-close right-side-toggle"></i>
-                            </span>
-                        </div>
-                        <div class="r-panel-body">
-                            <ul id="themecolors" class="m-t-20">
-                                <li>
-                                    <b>With Light sidebar</b>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="default" class="default-theme">1</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="green" class="green-theme">2</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="red" class="red-theme">3</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a>
-                                </li>
-                                <li class="d-block m-t-30">
-                                    <b>With Dark sidebar</b>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme working">7</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a>
-                                </li>
-                            </ul>
-                            <ul class="m-t-20 chatonline">
-                                <li>
-                                    <b>Chat option</b>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/usr.jpg" alt="user-img" class="img-circle">
-                                        <span>Varun Dhavan
-                                            <small class="text-success">online</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/2.jpg" alt="user-img" class="img-circle">
-                                        <span>Genelia Deshmukh
-                                            <small class="text-warning">Away</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/3.jpg" alt="user-img" class="img-circle">
-                                        <span>Ritesh Deshmukh
-                                            <small class="text-danger">Busy</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/4.jpg" alt="user-img" class="img-circle">
-                                        <span>Arijit Sinh
-                                            <small class="text-muted">Offline</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/5.jpg" alt="user-img" class="img-circle">
-                                        <span>Govinda Star
-                                            <small class="text-success">online</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/6.jpg" alt="user-img" class="img-circle">
-                                        <span>John Abraham
-                                            <small class="text-success">online</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/7.jpg" alt="user-img" class="img-circle">
-                                        <span>Hritik Roshan
-                                            <small class="text-success">online</small>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="../assets/images/users/8.jpg" alt="user-img" class="img-circle">
-                                        <span>Pwandeep rajan
-                                            <small class="text-success">online</small>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
