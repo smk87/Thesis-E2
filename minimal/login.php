@@ -28,22 +28,23 @@
         <form method="post" action="login.php">
           <div class="form-group">
             <label for="exampleInputEmail1">ID</label>
-            <input class="form-control" id="exampleInputEmail1" type="text" name="username" required aria-describedby="emailHelp" placeholder="Enter Your ID">
+            <input class="form-control" id="exampleInputEmail1" type="text" name="username" required aria-describedby="emailHelp"
+              placeholder="Enter Your ID">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input class="form-control" id="exampleInputPassword1" type="password" name="password" required placeholder="Enter Your Password">
           </div>
-            <label class="container">
-                <input type="radio" name="type" value="Student" checked> Student<br>
-                <input type="radio" name="type" value="Teacher"> Teacher<br>
-        <input type="radio" name="type" value="Admin"> Admin
-        <span class="checkmark"></span>
-        </label>
+          <label class="container">
+            <input type="radio" name="type" value="Student" checked> Student<br>
+            <input type="radio" name="type" value="Teacher"> Teacher<br>
+            <input type="radio" name="type" value="Admin"> Admin
+            <span class="checkmark"></span>
+          </label>
 
-            <div class="input-group">
-  		<button type="submit" class="btn btn-primary btn-block" name="login_user">Login</button>
-  	</div>
+          <div class="input-group">
+            <button type="submit" class="btn btn-primary btn-block" name="login_user">Login</button>
+          </div>
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="register.php">Register an Account</a>

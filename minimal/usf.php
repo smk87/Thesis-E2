@@ -238,13 +238,13 @@ if (isset($_GET['logout'])) {
                                 </a>
                                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                                     <li>
-                                        <a href="usf.php">Add Student Fees</a>
+                                        <a href="usf.php">Add Student Bills</a>
                                     </li>
                                     <li>
-                                        <a href="csf.php">Update Student Fees</a>
+                                        <a href="csf.php">Update Student Bills</a>
                                     </li>
                                     <li>
-                                        <a href="vsf.php">View Student Fees</a>
+                                        <a href="vsf.php">View Student Bills</a>
                                     </li>
                                 </ul>
                             </li>
@@ -314,12 +314,12 @@ if (isset($_GET['logout'])) {
                     <!-- ============================================================== -->
                     <div class="row page-titles">
                         <div class="col-md-6 col-8 align-self-center">
-                            <h3 class="text-themecolor m-b-0 m-t-0">Add Student Fees</h3>
+                            <h3 class="text-themecolor m-b-0 m-t-0">Add Student Bills</h3>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="javascript:void(0)">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Add Student Fees</li>
+                                <li class="breadcrumb-item active">Add Student Bills</li>
                             </ol>
                         </div>
 
@@ -335,43 +335,9 @@ if (isset($_GET['logout'])) {
                             <div class="card">
                                 <div class="card-block">
                                     <div class="col-md-12">
-                                        <form action="usf_insert.php" method="post">
-                                            <div class="form-group row">
-                                                <label for="username" class="col-2 col-form-label">Student ID</label>
-                                                <div class="col-8">
-                                                    <input type="text" id="fname" name="id" required placeholder="Enter ID"> </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="username" class="col-2 col-form-label">Bill Type</label>
-                                                <div class="col-8">
-                                                    <input type="text" id="fname" name="billtype" required placeholder="Enter Bill Type"> </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="username" class="col-2 col-form-label">Bill Info</label>
-                                                <div class="col-8">
-                                                    <input type="text" id="fname" name="billinfo" required placeholder="Enter Level-Term/Month"> </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="username" class="col-2 col-form-label">Bill Amount</label>
-                                                <div class="col-8">
-                                                    <input type="text" id="fname" name="billamt" required placeholder="Enter Bill Amount"> </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label for="username" class="col-2 col-form-label">Due Date</label>
-                                                <div class="col-8">
-                                                    <input type="date" id="fname" name="duedate" required placeholder="Enter Due Date"> </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <div class="offset-2 col-8">
-                                                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                    <center>
+                                        <iframe src="import_data.php" style="height:300px;width:1300px;border:none;"></iframe>
+                                    </center>
                                     </div>
                                 </div>
                             </div>

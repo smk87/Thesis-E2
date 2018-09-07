@@ -238,13 +238,13 @@ if (isset($_GET['logout'])) {
                                 </a>
                                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                                     <li>
-                                        <a href="usf.php">Add Student Fees</a>
+                                        <a href="usf.php">Add Student Bills</a>
                                     </li>
                                     <li>
-                                        <a href="csf.php">Update Student Fees</a>
+                                        <a href="csf.php">Update Student Bills</a>
                                     </li>
                                     <li>
-                                        <a href="vsf.php">View Student Fees</a>
+                                        <a href="vsf.php">View Student Bills</a>
                                     </li>
                                 </ul>
                             </li>
@@ -314,12 +314,12 @@ if (isset($_GET['logout'])) {
                     <!-- ============================================================== -->
                     <div class="row page-titles">
                         <div class="col-md-6 col-8 align-self-center">
-                            <h3 class="text-themecolor m-b-0 m-t-0">View Student Fees</h3>
+                            <h3 class="text-themecolor m-b-0 m-t-0">View Student Bills</h3>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <a href="javascript:void(0)">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">View Student Fees</li>
+                                <li class="breadcrumb-item active">View Student Bills</li>
                             </ol>
                         </div>
 

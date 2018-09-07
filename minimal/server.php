@@ -144,7 +144,43 @@ if (isset($_POST['login_user'])) {
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: index.php');
   	}else {
-  		array_push($errors, "Wrong username/password combination");
+      array_push($errors, "Wrong username/password combination");
+      ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .myAlert-bottom {
+      position: fixed;
+      bottom: -595px;
+      left: 2%;
+      width: 96%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="myAlert-bottom alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Wrong Username/Password Combination!</strong> Please, Try Again.
+  </div>
+
+  <script>
+    function myAlertBottom() {
+      $(".myAlert-bottom").show();
+      setTimeout(function () {
+        $(".myAlert-bottom").hide();
+      }, 2000);
+    }
+  </script>
+
+</body>
+
+</html>
+
+<?php
   	}
   }
 
@@ -170,7 +206,42 @@ if (isset($_POST['login_user'])) {
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: index.php');
   	}else {
-  		array_push($errors, "Wrong username/password combination");
+      array_push($errors, "Wrong username/password combination");
+      ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .myAlert-bottom {
+      position: fixed;
+      bottom: -595px;
+      left: 2%;
+      width: 96%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="myAlert-bottom alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Wrong Username/Password Combination!</strong> Please, Try Again.
+  </div>
+
+  <script>
+    function myAlertBottom() {
+      $(".myAlert-bottom").show();
+      setTimeout(function () {
+        $(".myAlert-bottom").hide();
+      }, 2000);
+    }
+  </script>
+
+</body>
+
+</html>
+<?php
   	}
   }
 
@@ -196,7 +267,42 @@ if (isset($_POST['login_user'])) {
   	  $_SESSION['success'] = "You are now logged in";
   	  header('location: index_a.php');
   	}else {
-  		array_push($errors, "Wrong username/password combination");
+      array_push($errors, "Wrong username/password combination");
+      ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .myAlert-bottom {
+      position: fixed;
+      bottom: -595px;
+      left: 2%;
+      width: 96%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="myAlert-bottom alert alert-danger">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Wrong Username/Password Combination!</strong> Please, Try Again.
+  </div>
+
+  <script>
+    function myAlertBottom() {
+      $(".myAlert-bottom").show();
+      setTimeout(function () {
+        $(".myAlert-bottom").hide();
+      }, 2000);
+    }
+  </script>
+
+</body>
+
+</html>
+<?php 
   	}
   }
 
