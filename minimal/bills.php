@@ -100,14 +100,7 @@ if (isset($_GET['logout'])) {
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="mdi mdi-message"></i>
-                                <div class="notify">
-                                    </span>
-                                    </span>
-                                </div>
-                            </a>
+                            
                             <div class="dropdown-menu mailbox animated bounceInDown">
                                 <ul>
                                     <li>
@@ -448,7 +441,7 @@ if (isset($_GET['logout'])) {
                                                              ?>
                                                         <div class="form-group row">
                                                             <div class="offset-0 col-8">
-                                                                <br>
+                                                            <a href="inv.php?v1=<?php echo $row['bill_id'] ?>&v2=<?php echo $_SESSION['name'];?>&v3=<?php echo $row['bill_type'] ?>&v4=<?php echo $row['bill_info'] ?>&v5=<?php echo $row['bill_amt'] ?>">View Memo</a>
                                                             </div>
                                                         </div>
                                                         <?php } ?>

@@ -37,6 +37,7 @@ if (isset($_GET['logout'])) {
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body class="fix-sidebar fix-header card-no-border">
@@ -98,7 +99,6 @@ if (isset($_GET['logout'])) {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href=""
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="mdi mdi-message"></i>
                                 <div class="notify">
                                     </span>
                                     </span>
@@ -107,7 +107,7 @@ if (isset($_GET['logout'])) {
                             <div class="dropdown-menu mailbox animated bounceInDown">
                                 <ul>
                                     <li>
-                                        <div class="drop-title">Notifications</div>
+                                        <div class="drop-title">Notifications1</div>
                                     </li>
                                     <li>
                                         <div class="message-center">

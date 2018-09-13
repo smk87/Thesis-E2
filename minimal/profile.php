@@ -97,14 +97,7 @@ if (isset($_GET['logout'])) {
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="mdi mdi-message"></i>
-                                <div class="notify">
-                                    </span>
-                                    </span>
-                                </div>
-                            </a>
+                            
                             <div class="dropdown-menu mailbox animated bounceInDown">
                                 <ul>
                                     <li>
