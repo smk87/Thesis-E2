@@ -61,7 +61,7 @@ if (isset($_GET['logout'])) {
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">
+                    <a class="navbar-brand" href="index_t.php">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -183,7 +183,7 @@ if (isset($_GET['logout'])) {
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
-                                        <a href="index.php?logout='1'">
+                                        <a href="index_t.php?logout='1'">
                                             <i class="fa fa-power-off"></i> Logout</a>
                                     </li>
                                 </ul>
@@ -218,7 +218,7 @@ if (isset($_GET['logout'])) {
                             <a href="profile.php" class="dropdown-item">
                                 <i class="ti-user"></i> My Profile</a>
                             <div class="dropdown-divider"></div>
-                            <a href="index.php?logout='1'" class="dropdown-item">
+                            <a href="index_t.php?logout='1'" class="dropdown-item">
                                 <i class="fa fa-power-off"></i> Logout</a>
                         </div>
                     </div>
@@ -228,19 +228,13 @@ if (isset($_GET['logout'])) {
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li>
-                            <a href="index.php" aria-expanded="false">
+                            <a href="index_t.php" aria-expanded="false">
                                 <i class="mdi mdi-gauge"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="bills.php" aria-expanded="false">
-                                <i class="mdi mdi-bank"></i>
-                                <span class="hide-menu">Bills</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="app.php" aria-expanded="false">
+                            <a href="vapp.php" aria-expanded="false">
                                 <i class="mdi mdi-email"></i>
                                 <span class="hide-menu">Applications</span>
                             </a>
@@ -267,7 +261,7 @@ if (isset($_GET['logout'])) {
             <!-- Bottom points-->
             <div class="sidebar-footer">
                 <!-- item-->
-                <a href="index.php" class="link" data-toggle="tooltip" title="Dashboard">
+                <a href="index_t.php" class="link" data-toggle="tooltip" title="Dashboard">
                     <i class="mdi mdi-view-dashboard"></i>
                 </a>
                 <!-- item-->
@@ -275,7 +269,7 @@ if (isset($_GET['logout'])) {
                     <i class="mdi mdi-account-box-outline"></i>
                 </a>
                 <!-- item-->
-                <a href="index.php?logout='1'" class="link" data-toggle="tooltip" title="Logout">
+                <a href="index_t.php?logout='1'" class="link" data-toggle="tooltip" title="Logout">
                     <i class="mdi mdi-power"></i>
                 </a>
             </div>
@@ -297,12 +291,12 @@ if (isset($_GET['logout'])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Applications</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">Home</a>
                             </li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Applications</li>
                         </ol>
                     </div>
 
@@ -314,121 +308,49 @@ if (isset($_GET['logout'])) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <?php 
-                             /* Attempt MySQL server connection. Assuming you are running MySQL
-        server with default setting (user 'root' with no password) */
-                                        $mysqli = new mysqli("localhost", "root", "", "th");
+                    <?php
 
-        // Check connection
-                                        if ($mysqli === false) {
-                                            die("ERROR: Could not connect. " . $mysqli->connect_error);
-                                        }
+                        $p='appupload/'.$_SESSION['username'];
+                       // echo $p;
 
-        //Printing values
-                                        $tid = $_SESSION['username'];
-                                        $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
 
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-info">
-                            <div class="box bg-info text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Total Bills</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_sts='Not Paid';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-primary card-inverse">
-                            <div class="box text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Not Paid</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_sts='Paid';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-success">
-                            <div class="box text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Paid</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_type='Fine';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-warning">
-                            <div class="box text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Fines</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
+                    ?>
+
+                    <iframe src="<?php echo $p; ?>" width="100%" height=500px>
+                        This browser does not support PDFs. Please download the PDF to view it: <a href="/pdf/sample-3pp.pdf">Download
+                            PDF</a>
+                    </iframe>
+
+
                 </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
 
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
-            <!-- End PAge Content -->
+            <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
-            <!-- Right sidebar -->
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-
+            <footer class="footer">
+                © 2018 MIST Billing System by Saqlain,Jahid,Rezwan
+            </footer>
             <!-- ============================================================== -->
-            <!-- End Right sidebar -->
+            <!-- End footer -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer">
-            © 2018 MIST Billing System by Saqlain,Jahid,Rezwan
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
-    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->

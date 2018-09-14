@@ -10,7 +10,10 @@ if (isset($_GET['logout'])) {
     unset($_SESSION['username']);
     header("location: login.php");
 }
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +30,7 @@ if (isset($_GET['logout'])) {
     <title>MIST Billing System</title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/plugins/dropify/dist/css/dropify.min.css">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -314,121 +318,48 @@ if (isset($_GET['logout'])) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <?php 
-                             /* Attempt MySQL server connection. Assuming you are running MySQL
-        server with default setting (user 'root' with no password) */
-                                        $mysqli = new mysqli("localhost", "root", "", "th");
+                    <div class="col-12">
 
-        // Check connection
-                                        if ($mysqli === false) {
-                                            die("ERROR: Could not connect. " . $mysqli->connect_error);
-                                        }
+                        <div class="card">
+                            <div class="card-block">
 
-        //Printing values
-                                        $tid = $_SESSION['username'];
-                                        $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
+                                <h4 class="card-title">Upload Your Application</h4>
 
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-info">
-                            <div class="box bg-info text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Total Bills</h6>
-                                </a>
+                                        <iframe src="appup.php" style="height:380px;width:500px;border:none;"></iframe>
+
                             </div>
                         </div>
                     </div>
-                    <?php } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_sts='Not Paid';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-primary card-inverse">
-                            <div class="box text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Not Paid</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_sts='Paid';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-success">
-                            <div class="box text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Paid</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_type='Fine';";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-warning">
-                            <div class="box text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Fines</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
+
                 </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
 
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
-            <!-- End PAge Content -->
+            <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
-            <!-- Right sidebar -->
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-
+            <footer class="footer">
+                © 2018 MIST Billing System by Saqlain,Jahid,Rezwan
+            </footer>
             <!-- ============================================================== -->
-            <!-- End Right sidebar -->
+            <!-- End footer -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer">
-            © 2018 MIST Billing System by Saqlain,Jahid,Rezwan
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
-    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -450,6 +381,53 @@ if (isset($_GET['logout'])) {
     <script src="../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- Plugins for this page -->
+    <!-- ============================================================== -->
+    <!-- jQuery file upload -->
+    <script src="../assets/plugins/dropify/dist/js/dropify.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
