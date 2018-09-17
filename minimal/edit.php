@@ -95,7 +95,7 @@ if (isset($_GET['logout'])) {
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
-                        
+                       
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
@@ -215,6 +215,7 @@ if (isset($_GET['logout'])) {
                                 <li>
                                     <a href="usf.php">Add Student Bills</a>
                                 </li>
+                                
                                 <li>
                                     <a href="vsf.php">View Student Bills</a>
                                 </li>
@@ -286,12 +287,12 @@ if (isset($_GET['logout'])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">View Student Bills</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Edit Student Bills</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">Home</a>
                             </li>
-                            <li class="breadcrumb-item active">View Student Bills</li>
+                            <li class="breadcrumb-item active">Edit Student Bills</li>
                         </ol>
                     </div>
 
@@ -306,131 +307,61 @@ if (isset($_GET['logout'])) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Student ID</th>
-                                                <th>Bill Type</th>
-                                                <th>Bill Info</th>
-                                                <th>Bill Amount</th>
-                                                <th>Bill Due Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                <div class="row">
+                                    <div class="col-md-12">
 
-                                            <?php 
-                             /* Attempt MySQL server connection. Assuming you are running MySQL
-        server with default setting (user 'root' with no password) */
-                                        $mysqli = new mysqli("localhost", "root", "", "th");
-                                              
-                                        if(isset($_POST['sid'])){
-                                            $sid=$_POST['sid'];
-                                        }
-                                        else{
-                                            $sid=$_GET['v'];
-                                        }
+                                        <div class="row">
 
-        // Check connection
-                                        if ($mysqli === false) {
-                                            die("ERROR: Could not connect. " . $mysqli->connect_error);
-                                        }
+                                        </div>
 
-        //Printing values
-                                        $tid = $_SESSION['username'];
-                                        $q = "SELECT * FROM bill WHERE bill_stdid='$sid' ORDER BY bill_duedate DESC";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
+                                        <form action="edit_done.php" method="POST">
+                                            <div class="form-group row">
+                                                <label for="username" class="col-4 col-form-label">Student ID</label>
+                                                <div class="col-8">
+                                                    <input id="username" name="sid" value="<?php echo $_POST['bill_stdid']; ?>"
+                                                        class="form-control here" style="font-weight: bold;" disabled="disabled"
+                                                        type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="name" class="col-4 col-form-label">Bill Type</label>
+                                                <div class="col-8">
+                                                    <input id="name" name="type" value="<?php echo $_POST['billtype']; ?>"
+                                                        class="form-control here" style="font-weight: bold;" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="text" class="col-4 col-form-label">Bill Info</label>
+                                                <div class="col-8">
+                                                    <input id="text" name="info" value="<?php echo $_POST['billinfo']; ?>"
+                                                        class="form-control here" style="font-weight: bold;" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="text" class="col-4 col-form-label">Bill Amount</label>
+                                                <div class="col-8">
+                                                    <input id="text" name="amt" value="<?php echo $_POST['billamt']; ?>"
+                                                        class="form-control here" style="font-weight: bold;" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="email" class="col-4 col-form-label">Bill Due Date</label>
+                                                <div class="col-8">
+                                                    <input id="email" name="ddate" value="<?php echo $_POST['bill_duedate']; ?>"
+                                                        class="form-control here" style="font-weight: bold;" type="text">
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="bill_id" value="<?php echo $_POST['bill_id']; ?>">
+                                            <input type="hidden" name="stdid" value="<?php echo $_POST['bill_stdid']; ?>">
+                                            <div class="offset-4 col-8">
+                                                <button name="submit" type="submit" class="btn btn-primary">Update</button>
+                                            </div>
 
-                                            <tr>
-                                                <td><a>
-                                                        <?php echo $row['bill_stdid']; ?></a></td>
-                                                <td>
-                                                    <?php echo $row['bill_type']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['bill_info']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['bill_amt']; ?>
-                                                </td>
-                                                <td><span class="text-muted"><i class="fa fa-clock-o"></i>
-                                                        <?php echo $row['bill_duedate']; ?> </span>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                if($row['bill_sts']=='Paid'){?>
-                                                    <div class="label label-table label-success">Paid</div>
-                                                    <?php }
-                                                    else{
-                                                    ?>
-                                                    <div class="label label-table label-danger">Not Paid</div>
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <form action="edit.php" method="POST">
+                                        </form>
+                                        <br />
+                                        <br />
 
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="username" name="bill_stdid"
-                                                                    value="<?php echo $row['bill_stdid']; ?>" class="form-control here"
-                                                                    style="font-weight: bold;" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="name" name="billtype" value="<?php echo $row['bill_type']; ?>"
-                                                                    class="form-control here" style="font-weight: bold;"
-                                                                    type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="text" name="billinfo" value="<?php echo $row['bill_info']; ?>"
-                                                                    class="form-control here" style="font-weight: bold;"
-                                                                    type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="text" name="billamt" value="<?php echo $row['bill_amt']; ?>"
-                                                                    class="form-control here" style="font-weight: bold;"
-                                                                    type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="email" name="bill_duedate"
-                                                                    value="<?php echo $row['bill_duedate']; ?>" class="form-control here"
-                                                                    style="font-weight: bold;" type="text">
-                                                            </div>
-                                                        </div>
-
-                                                        <input type="hidden" name="bill_id" value="<?php echo $row['bill_id']; ?>">
-
-                                                        <div class="form-group row">
-                                                            <div class="offset-0 col-8">
-                                                                <button name="submit" type="submit" class="btn btn-primary">Edit</button>
-                                                            </div>
-                                                        </div>
-
-                                                    </form>
-                                                </td>
-                                            </tr>
-
-                                            <?php
-
-                                    }
-
-          // Close connection
-                                    $mysqli->close();
-                                    ?>
-
-                                        </tbody>
-                                    </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

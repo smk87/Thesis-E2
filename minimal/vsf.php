@@ -95,34 +95,7 @@ if (isset($_GET['logout'])) {
                             <!-- ============================================================== -->
                             <!-- Comment -->
                             <!-- ============================================================== -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="mdi mdi-message"></i>
-                                    <div class="notify">
-                                        </span>
-                                        </span>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu mailbox animated bounceInDown">
-                                    <ul>
-                                        <li>
-                                            <div class="drop-title">Notifications</div>
-                                        </li>
-                                        <li>
-                                            <div class="message-center">
-
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a class="nav-link text-center" href="javascript:void(0);">
-                                                <strong>Check all notifications</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                            
                             <!-- ============================================================== -->
                             <!-- End Comment -->
                             <!-- ============================================================== -->
@@ -239,9 +212,6 @@ if (isset($_GET['logout'])) {
                                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                                     <li>
                                         <a href="usf.php">Add Student Bills</a>
-                                    </li>
-                                    <li>
-                                        <a href="csf.php">Update Student Bills</a>
                                     </li>
                                     <li>
                                         <a href="vsf.php">View Student Bills</a>
