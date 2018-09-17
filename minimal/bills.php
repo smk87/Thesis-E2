@@ -237,24 +237,10 @@ if (isset($_GET['logout'])) {
                             </a>
                         </li>
                         <li>
-                            <a class="has-arrow " href="#" aria-expanded="false">
+                            <a href="app.php" aria-expanded="false">
                                 <i class="mdi mdi-email"></i>
                                 <span class="hide-menu">Applications</span>
                             </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li>
-                                    <a href="sfa.php">Semister Fee Application</a>
-                                </li>
-                                <li>
-                                    <a href="hba.php">Hall Bill Application</a>
-                                </li>
-                                <li>
-                                    <a href="mba.php">Mess Bill Aplication</a>
-                                </li>
-                                <li>
-                                    <a href="otha.php">Other Application</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a class="has-arrow " href="#" aria-expanded="false">
