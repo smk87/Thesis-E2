@@ -17,13 +17,25 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
 
+  <style>
+    .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+  </style>
+
 
 </head>
 
 <body background="pay.jpg">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Login</div>
+      <img src="MIST_Logo.png" style="width:200px;height:180px;" class="center">
+      <div class="card-header">
+        <h3>Login</h3>
+      </div>
       <div class="card-body">
         <form method="post" action="login.php">
           <div class="form-group">
@@ -58,6 +70,13 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <footer class="center">
+  <br>
+  <center> <h6>© 2018 MIST Billing System by Saqlain,Jahid,Rezwan</h1></center>
+  </footer>
+  <br>
+  
 </body>
 
 </html>

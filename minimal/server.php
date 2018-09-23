@@ -153,7 +153,7 @@ if (isset($_POST['login_user'])) {
   <style>
     .myAlert-bottom {
       position: fixed;
-      bottom: -595px;
+      bottom: -760px;
       left: 2%;
       width: 96%;
     }
@@ -215,7 +215,7 @@ if (isset($_POST['login_user'])) {
   <style>
     .myAlert-bottom {
       position: fixed;
-      bottom: -595px;
+      bottom: -760px;
       left: 2%;
       width: 96%;
     }
@@ -276,7 +276,7 @@ if (isset($_POST['login_user'])) {
   <style>
     .myAlert-bottom {
       position: fixed;
-      bottom: -595px;
+      bottom: -760px;
       left: 2%;
       width: 96%;
     }

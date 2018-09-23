@@ -95,7 +95,7 @@ if (isset($_GET['logout'])) {
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
-                        
+
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
@@ -328,6 +328,33 @@ if (isset($_GET['logout'])) {
                                               
                                         if(isset($_POST['sid'])){
                                             $sid=$_POST['sid'];
+
+                                            if(!empty($_POST['check_list'])){
+                                                // Loop to store and display values of individual checked checkbox.
+                                                foreach($_POST['check_list'] as $selected){
+                                                //echo $selected."</br>";
+                                                if($selected=='all'){
+                                                    $f="All";
+                                                    if(!empty($f)){
+                                                        //echo $f1;
+                                                    }
+                                                }
+                                                if($selected=='np'){
+                                                    $f1="Not Paid";
+                                                    if(!empty($f1)){
+                                                        //echo $f1;
+                                                    }
+                                                }
+                                                if($selected=='p'){
+                                                    $fp="Paid";
+                                                }
+                                                }
+                                                }
+                                                
+                                                if(isset($_POST['check'])){
+                                                $fr=$_POST['check'];
+                                                echo $fr;
+                                                }
                                         }
                                         else{
                                             $sid=$_GET['v'];
@@ -340,7 +367,53 @@ if (isset($_GET['logout'])) {
 
         //Printing values
                                         $tid = $_SESSION['username'];
-                                        $q = "SELECT * FROM bill WHERE bill_stdid='$sid' ORDER BY bill_duedate DESC";
+                                        $q = "SELECT * FROM bill WHERE bill_stdid='$sid'";
+                                        $qp = " AND bill_sts='Paid'";
+                                        $q1 = " AND bill_sts='Not Paid'";
+                                        $q2 = " AND bill_type='Tuition'";
+                                        $q3 = " AND bill_type='Fine'";
+                                        $q4 = " AND bill_type='Mess Bill'";
+                                        $q5 = " AND bill_type='Hall Bill'";
+                                        $ql= " ORDER BY bill_duedate DESC";
+                                        
+                                        if(!empty($fp) && !empty($f1)){
+                                            $q=$q;
+                                            //echo $q;
+                                        }
+                                        else if(!empty($fp)){
+                                            $q=$q.$qp;
+                                            //echo $q;
+                                        }
+                                        else if(!empty($f1)){
+                                            $q=$q.$q1;
+                                            //echo $q;
+                                        }
+                                        if(!empty($fr)){
+
+                                        if($fr=='t'){
+                                            $q=$q.$q2;
+                                            //echo $q;
+                                        }
+                                        if($fr=='f'){
+                                            $q=$q.$q3;
+                                            //echo $q;
+                                        }
+                                        if($fr=='m'){
+                                            $q=$q.$q4;
+                                           // echo $q;
+                                        }
+                                        if($fr=='h'){
+                                            $q=$q.$q5;
+                                            //echo $q;
+                                        }
+                                    }
+                                        $q-$q.$ql;
+
+                                        if(!empty($f)){
+                                            $q="SELECT * FROM bill WHERE bill_stdid='$sid' ORDER BY bill_duedate DESC";
+                                        }
+                                        echo $q;
+
                                         $r = mysqli_query($mysqli, $q);
                                         while ($row = mysqli_fetch_array($r)) {
                                             ?>
