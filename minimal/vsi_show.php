@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once( 'couch/cms.php' );
 
 if (!isset($_SESSION['username'])) {
     $_SESSION['msg'] = "You must log in first";
@@ -24,7 +25,7 @@ if (isset($_GET['logout'])) {
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-        <title>MIST Billing System</title>
+        <title><cms:get_custom_field 'sitename' masterpage='couch/globals.php' /></title>
         <!-- Bootstrap Core CSS -->
         <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom CSS -->
@@ -65,7 +66,7 @@ if (isset($_GET['logout'])) {
                             <b>
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
-                                <img src="../assets/images/MIST-logo.png" alt="homepage" class="dark-logo" />
+                                <img src="<cms:get_custom_field 'sitelogo' masterpage='couch/globals.php' />" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
                             </b>
                             <!--End Logo icon -->
@@ -455,7 +456,7 @@ if (isset($_GET['logout'])) {
                 <!-- footer -->
                 <!-- ============================================================== -->
                 <footer class="footer">
-                    © 2018 MIST Billing System by Saqlain,Jahid,Rezwan
+                    <cms:get_custom_field 'aboutinfo' masterpage='couch/globals.php' />
                 </footer>
                 <!-- ============================================================== -->
                 <!-- End footer -->
@@ -492,3 +493,5 @@ if (isset($_GET['logout'])) {
     </body>
 
     </html>
+
+    <?php COUCH::invoke(); ?>

@@ -1,4 +1,8 @@
-<?php include('server.php') ?>
+<?php
+include('server.php');
+require_once( 'couch/cms.php' );
+?>
+<cms:template title='Login' />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +13,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>MIST Billing System</title>
+  <title>
+    <cms:get_custom_field 'sitename' masterpage='couch/globals.php' />
+  </title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -32,7 +38,7 @@
 <body background="pay.jpg">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <img src="MIST_Logo.png" style="width:200px;height:180px;" class="center">
+      <img src="<cms:editable name='prop_image' label='Logo' desc='Upload an 200 by 200 logo.' type='image' />" style="width:200px;height:180px;" class="center">
       <div class="card-header">
         <h3>Login</h3>
       </div>
@@ -59,7 +65,7 @@
           </div>
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="register.php">Register an Account</a>
+          <a class="d-block small mt-3" href="couch/">Login As Content Admin</a>
 
         </div>
       </div>
@@ -72,11 +78,15 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <footer class="center">
-  <br>
-  <center> <h6>© 2018 MIST Billing System by Saqlain,Jahid,Rezwan</h1></center>
-  </footer>
-  <br>
-  
+    <br>
+    <center>
+      <h5>
+        <cms:get_custom_field 'aboutinfo' masterpage='couch/globals.php' />
+      </h5>
+      </center. </footer> <br>
+
 </body>
 
 </html>
+
+<?php COUCH::invoke(); ?>
