@@ -413,7 +413,7 @@ if (isset($_GET['logout'])) {
                                         if(!empty($f)){
                                             $q="SELECT * FROM bill WHERE bill_stdid='$sid' ORDER BY bill_duedate DESC";
                                         }
-                                        echo $q;
+                                        //echo $q;
 
                                         $r = mysqli_query($mysqli, $q);
                                         while ($row = mysqli_fetch_array($r)) {
