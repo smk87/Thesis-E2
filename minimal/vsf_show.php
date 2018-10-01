@@ -354,7 +354,7 @@ if (isset($_GET['logout'])) {
                                                 
                                                 if(isset($_POST['check'])){
                                                 $fr=$_POST['check'];
-                                                echo $fr;
+                                               // echo $fr;
                                                 }
                                         }
                                         else{

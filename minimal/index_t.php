@@ -25,7 +25,9 @@ if (isset($_GET['logout'])) {
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title><cms:get_custom_field 'sitename' masterpage='couch/globals.php' /></title>
+    <title>
+        <cms:get_custom_field 'sitename' masterpage='couch/globals.php' />
+    </title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -67,7 +69,8 @@ if (isset($_GET['logout'])) {
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="<cms:get_custom_field 'sitelogo' masterpage='couch/globals.php' />" alt="homepage" class="dark-logo" />
+                            <img src="<cms:get_custom_field 'sitelogo' masterpage='couch/globals.php' />" alt="homepage"
+                                class="dark-logo" />
                             <!-- Light Logo icon -->
                         </b>
                         <!--End Logo icon -->
@@ -309,36 +312,45 @@ if (isset($_GET['logout'])) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-block">
+                           <h2> Welcome, Sir! </h2><br>
+                           <a href="vapp"><h3><u><font color="red">Click To Visit Your Application Storage Space</font></u><h3></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
-            <!-- End PAge Content -->
+            <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
-            <!-- Right sidebar -->
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-
+            <footer class="footer">
+                <cms:get_custom_field 'aboutinfo' masterpage='couch/globals.php' />
+            </footer>
             <!-- ============================================================== -->
-            <!-- End Right sidebar -->
+            <!-- End footer -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer">
-            <cms:get_custom_field 'aboutinfo' masterpage='couch/globals.php' />
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
-    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
