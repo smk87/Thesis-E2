@@ -31,7 +31,6 @@
                             <th data-column-id="lvl">Level</th>
                             <th data-column-id="term">Term</th>
                             <th data-column-id="std_email">Email</th>
-                            <th data-column-id="std_pass">Password</th>
                             <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
                         </tr>
                     </thead>
@@ -123,7 +122,7 @@
                             <label for="email" class="control-label">Email:</label>
                             <input type="text" class="form-control" id="edit_email" name="edit_email" />
                         </div>
-                        <div class="form-group">
+                        <div style="display:none" class="form-group">
                             <label for="pass" class="control-label">Password:</label>
                             <input type="text" class="form-control" id="edit_pass" name="edit_pass" />
                         </div>

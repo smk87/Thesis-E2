@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once( 'couch/cms.php' );
+require_once('couch/cms.php');
 
 if (!isset($_SESSION['username'])) {
     $_SESSION['msg'] = "You must log in first";
@@ -322,7 +322,7 @@ if (isset($_GET['logout'])) {
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Student ID</th>
+                                            
                                                 <th>Bill Type</th>
                                                 <th>Bill Info</th>
                                                 <th>Bill Amount</th>
@@ -336,23 +336,21 @@ if (isset($_GET['logout'])) {
                                             <?php 
                              /* Attempt MySQL server connection. Assuming you are running MySQL
         server with default setting (user 'root' with no password) */
-                                        $mysqli = new mysqli("localhost", "root", "", "th");
+                                            $mysqli = new mysqli("localhost", "root", "", "th");
 
         // Check connection
-                                        if ($mysqli === false) {
-                                            die("ERROR: Could not connect. " . $mysqli->connect_error);
-                                        }
+                                            if ($mysqli === false) {
+                                                die("ERROR: Could not connect. " . $mysqli->connect_error);
+                                            }
 
         //Printing values
-                                        $tid = $_SESSION['username'];
-                                        $q = "SELECT * FROM bill WHERE bill_stdid='$tid' ORDER BY bill_duedate DESC";
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
+                                            $tid = $_SESSION['username'];
+                                            $q = "SELECT * FROM bill WHERE bill_stdid='$tid' ORDER BY bill_duedate DESC";
+                                            $r = mysqli_query($mysqli, $q);
+                                            while ($row = mysqli_fetch_array($r)) {
+                                                ?>
 
                                             <tr>
-                                                <td><a>
-                                                        <?php echo $row['bill_stdid']; ?></a></td>
                                                 <td>
                                                     <?php echo $row['bill_type']; ?>
                                                 </td>
@@ -367,13 +365,14 @@ if (isset($_GET['logout'])) {
                                                 </td>
                                                 <td>
                                                     <?php
-                                                if($row['bill_sts']=='Paid'){?>
+                                                    if ($row['bill_sts'] == 'Paid') { ?>
                                                     <div class="label label-table label-success">Paid</div>
-                                                    <?php }
-                                                    else{
+                                                    <?php 
+                                                } else {
                                                     ?>
                                                     <div class="label label-table label-danger">Not Paid</div>
-                                                    <?php } ?>
+                                                    <?php 
+                                                } ?>
                                                 </td>
                                                 <td>
                                                     <form action="getway.php" method="POST">
@@ -416,22 +415,23 @@ if (isset($_GET['logout'])) {
 
                                                         <input type="hidden" name="bill_id" value="<?php echo $row['bill_id']; ?>">
 
-                                                        <?php if($row['bill_sts']=='Not Paid'){ ?>
+                                                        <?php if ($row['bill_sts'] == 'Not Paid') { ?>
                                                         <div class="form-group row">
                                                             <div class="offset-0 col-8">
                                                                 <button name="submit" type="submit" class="btn btn-primary">Pay
                                                                     Now</button>
                                                             </div>
                                                         </div>
-                                                        <?php }
-                                                        else{
-                                                             ?>
+                                                        <?php 
+                                                    } else {
+                                                        ?>
                                                         <div class="form-group row">
                                                             <div class="offset-0 col-8">
-                                                            <a href="inv.php?v1=<?php echo $row['bill_id'] ?>&v2=<?php echo $_SESSION['name'];?>&v3=<?php echo $row['bill_type'] ?>&v4=<?php echo $row['bill_info'] ?>&v5=<?php echo $row['bill_amt'] ?>">View Memo</a>
+                                                            <a href="inv.php?v1=<?php echo $row['bill_id'] ?>&v2=<?php echo $_SESSION['name']; ?>&v3=<?php echo $row['bill_type'] ?>&v4=<?php echo $row['bill_info'] ?>&v5=<?php echo $row['bill_amt'] ?>">View Memo</a>
                                                             </div>
                                                         </div>
-                                                        <?php } ?>
+                                                        <?php 
+                                                    } ?>
 
                                                     </form>
                                                 </td>
@@ -439,11 +439,11 @@ if (isset($_GET['logout'])) {
 
                                             <?php
 
-                                    }
+                                        }
 
           // Close connection
-                                    $mysqli->close();
-                                    ?>
+                                        $mysqli->close();
+                                        ?>
 
                                         </tbody>
                                     </table>

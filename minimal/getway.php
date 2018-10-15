@@ -61,10 +61,10 @@
 
 <?php
 
-$billtype= $_POST['billtype'];
-$billamt=$_POST['billamt'];
-$bill_id=$_POST['bill_id'];
-$billinfo=$_POST['billinfo'];
+$billtype = $_POST['billtype'];
+$billamt = $_POST['billamt'];
+$bill_id = $_POST['bill_id'];
+$billinfo = $_POST['billinfo'];
 
 
 ?>
