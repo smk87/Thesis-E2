@@ -122,8 +122,8 @@
                             <label for="email" class="control-label">Email:</label>
                             <input type="text" class="form-control" id="edit_email" name="edit_email" />
                         </div>
-                        <div style="display:none" class="form-group">
-                            <label for="pass" class="control-label">Password:</label>
+                        <div class="form-group">
+                            <label for="pass" class="control-label">Password:(Required)</label>
                             <input type="text" class="form-control" id="edit_pass" name="edit_pass" />
                         </div>
 
