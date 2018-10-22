@@ -38,6 +38,8 @@ if (isset($_GET['logout'])) {
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+    <style>
+    </style>
 
 </head>
 
@@ -67,7 +69,9 @@ if (isset($_GET['logout'])) {
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="<cms:get_custom_field 'sitelogo' masterpage='couch/globals.php' />" alt="homepage" class="dark-logo" />                            <!-- Light Logo icon -->
+                            <img src="<cms:get_custom_field 'sitelogo' masterpage='couch/globals.php' />" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
@@ -97,17 +101,11 @@ if (isset($_GET['logout'])) {
                         <!-- Comment -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="notify">
-                                    </span>
-                                    </span>
-                                </div>
-                            </a>
+                            
                             <div class="dropdown-menu mailbox animated bounceInDown">
                                 <ul>
                                     <li>
-                                        <div class="drop-title">Notifications1</div>
+                                        <div class="drop-title">Notifications</div>
                                     </li>
                                     <li>
                                         <div class="message-center">
@@ -297,12 +295,12 @@ if (isset($_GET['logout'])) {
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">Bills</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">Home</a>
                             </li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Bills</li>
                         </ol>
                     </div>
 
@@ -314,182 +312,175 @@ if (isset($_GET['logout'])) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <?php 
+
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-block">
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                            
+                                                <th>Bill Type</th>
+                                                <th>Bill Info</th>
+                                                <th>Bill Amount</th>
+                                                <th>Bill Due Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php 
                              /* Attempt MySQL server connection. Assuming you are running MySQL
         server with default setting (user 'root' with no password) */
-                    $mysqli = new mysqli("localhost", "root", "", "th");
+                                            $mysqli = new mysqli("localhost", "root", "", "th");
 
         // Check connection
-                    if ($mysqli === false) {
-                        die("ERROR: Could not connect. " . $mysqli->connect_error);
-                    }
+                                            if ($mysqli === false) {
+                                                die("ERROR: Could not connect. " . $mysqli->connect_error);
+                                            }
 
         //Printing values
-                    $tid = $_SESSION['username'];
-                    $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid';";
-                    $r = mysqli_query($mysqli, $q);
-                    while ($row = mysqli_fetch_array($r)) {
-                        ?>
+                                            $tid = $_SESSION['username'];
+                                            $q = "SELECT * FROM bill WHERE bill_stdid='$tid' and bill_type='Mess Bill' ORDER BY bill_duedate DESC";
+                                            $r = mysqli_query($mysqli, $q);
+                                            while ($row = mysqli_fetch_array($r)) {
+                                                ?>
 
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-info">
-                            <div class="box bg-info text-center">
-                                <a href="bills.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Total Bills</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_sts='Not Paid';";
-                    $r = mysqli_query($mysqli, $q);
-                    while ($row = mysqli_fetch_array($r)) {
-                        ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-primary card-inverse">
-                            <div class="box text-center">
-                                <a href="bills_1.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Not Paid</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_sts='Paid';";
-                    $r = mysqli_query($mysqli, $q);
-                    while ($row = mysqli_fetch_array($r)) {
-                        ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-success">
-                            <div class="box text-center">
-                                <a href="bills_2.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Paid</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                } ?>
-                    <!-- Column -->
-                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_type='Fine';";
-                    $r = mysqli_query($mysqli, $q);
-                    while ($row = mysqli_fetch_array($r)) {
-                        ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-warning">
-                            <div class="box text-center">
-                                <a href="bills_3.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Fines</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                } ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $row['bill_type']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['bill_info']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $row['bill_amt']; ?>
+                                                </td>
+                                                <td><span class="text-muted"><i class="fa fa-clock-o"></i>
+                                                        <?php echo $row['bill_duedate']; ?> </span>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if ($row['bill_sts'] == 'Paid') { ?>
+                                                    <div class="label label-table label-success">Paid</div>
+                                                    <?php 
+                                                } else {
+                                                    ?>
+                                                    <div class="label label-table label-danger">Not Paid</div>
+                                                    <?php 
+                                                } ?>
+                                                </td>
+                                                <td>
+                                                    <form action="getway.php" method="POST">
 
-                                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_type='Tuition';";
-                                    $r = mysqli_query($mysqli, $q);
-                                    while ($row = mysqli_fetch_array($r)) {
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="username" name="bill_stdid"
+                                                                    value="<?php echo $row['bill_stdid']; ?>" class="form-control here"
+                                                                    style="font-weight: bold;" type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="name" name="billtype" value="<?php echo $row['bill_type']; ?>"
+                                                                    class="form-control here" style="font-weight: bold;"
+                                                                    type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="text" name="billinfo" value="<?php echo $row['bill_info']; ?>"
+                                                                    class="form-control here" style="font-weight: bold;"
+                                                                    type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="text" name="billamt" value="<?php echo $row['bill_amt']; ?>"
+                                                                    class="form-control here" style="font-weight: bold;"
+                                                                    type="text">
+                                                            </div>
+                                                        </div>
+                                                        <div style="display: none;"> class="form-group row">
+                                                            <div class="col-8">
+                                                                <input type="hidden" id="email" name="bill_duedate"
+                                                                    value="<?php echo $row['bill_duedate']; ?>" class="form-control here"
+                                                                    style="font-weight: bold;" type="text">
+                                                            </div>
+                                                        </div>
+
+                                                        <input type="hidden" name="bill_id" value="<?php echo $row['bill_id']; ?>">
+
+                                                        <?php if ($row['bill_sts'] == 'Not Paid') { ?>
+                                                        <div class="form-group row">
+                                                            <div class="offset-0 col-8">
+                                                                <button name="submit" type="submit" class="btn btn-primary">Pay
+                                                                    Now</button>
+                                                            </div>
+                                                        </div>
+                                                        <?php 
+                                                    } else {
+                                                        ?>
+                                                        <div class="form-group row">
+                                                            <div class="offset-0 col-8">
+                                                            <a href="inv.php?v1=<?php echo $row['bill_id'] ?>&v2=<?php echo $_SESSION['name']; ?>&v3=<?php echo $row['bill_type'] ?>&v4=<?php echo $row['bill_info'] ?>&v5=<?php echo $row['bill_amt'] ?>">View Memo</a>
+                                                            </div>
+                                                        </div>
+                                                        <?php 
+                                                    } ?>
+
+                                                    </form>
+                                                </td>
+                                            </tr>
+
+                                            <?php
+
+                                        }
+
+          // Close connection
+                                        $mysqli->close();
                                         ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-warning">
-                            <div class="box text-center">
-                                <a href="bills_4.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Tuition Fee</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                } ?>
 
-                                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_type='Hall Bill';";
-                                    $r = mysqli_query($mysqli, $q);
-                                    while ($row = mysqli_fetch_array($r)) {
-                                        ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-warning">
-                            <div class="box text-center">
-                                <a href="bills_5.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Hall Bill</h6>
-                                </a>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <?php 
-                } ?>
 
-                                    <?php $q = "SELECT COUNT(*) as tb FROM bill where bill_stdid='$tid' and bill_type='Mess Bill';";
-                                    $r = mysqli_query($mysqli, $q);
-                                    while ($row = mysqli_fetch_array($r)) {
-                                        ?>
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-warning">
-                            <div class="box text-center">
-                                <a href="bills_6.php">
-                                    <h1 class="font-light text-white">
-                                        <?php echo $row['tb'] ?>
-                                    </h1>
-                                    <h6 class="text-white">Mess Bill</h6>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php 
-                } ?>
                 </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
 
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
-            <!-- End PAge Content -->
+            <!-- End Container fluid  -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
-            <!-- Right sidebar -->
+            <!-- footer -->
             <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-
+            <footer class="footer">
+                <cms:get_custom_field 'aboutinfo' masterpage='couch/globals.php' />
+            </footer>
             <!-- ============================================================== -->
-            <!-- End Right sidebar -->
+            <!-- End footer -->
             <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer">
-            <cms:get_custom_field 'aboutinfo' masterpage='couch/globals.php' />
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Page wrapper  -->
-    <!-- ============================================================== -->
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -519,4 +510,4 @@ if (isset($_GET['logout'])) {
 
 </html>
 
- <?php COUCH::invoke(); ?>
+<?php COUCH::invoke(); ?>
