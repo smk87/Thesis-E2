@@ -408,7 +408,7 @@ if (isset($_GET['logout'])) {
                                             //echo $q;
                                         }
                                     }
-                                        $q-$q.$ql;
+                                        $q=$q.$ql;
 
                                         if(!empty($f)){
                                             $q="SELECT * FROM bill WHERE bill_stdid='$sid' ORDER BY bill_duedate DESC";
