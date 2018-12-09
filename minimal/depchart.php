@@ -96,7 +96,7 @@ if (isset($_GET['logout'])) {
                             <!-- ============================================================== -->
                             <!-- Comment -->
                             <!-- ============================================================== -->
-                            
+                           
                             <!-- ============================================================== -->
                             <!-- End Comment -->
                             <!-- ============================================================== -->
@@ -212,11 +212,11 @@ if (isset($_GET['logout'])) {
                                 </a>
                                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                                     <li>
-                                        <a href="usf.php">Add Student Bills</a>
+                                        <a href="usf.php">Add Student Fees</a>
                                     </li>
                                     <li>
                                     <li>
-                                        <a href="vsf.php">View Student Bills</a>
+                                        <a href="vsf.php">View Student Fees</a>
                                     </li>
                                 </ul>
                             </li>
@@ -306,26 +306,122 @@ if (isset($_GET['logout'])) {
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-block">
-                                    <form action="vsi_show.php" method="post">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <form>
-                                                    <div class="form-group row">
-                                                        <label for="username" class="col-2 col-form-label">Student ID</label>
-                                                        <div class="col-8">
-                                                            <input type="text" id="fname" name="sid" required placeholder="Enter ID"> </div>
-                                                    </div>
+                                    <?php 
+                             /* Attempt MySQL server connection. Assuming you are running MySQL
+          server with default setting (user 'root' with no password) */
+                                    $mysqli = new mysqli("localhost", "root", "", "th");
 
-                                                    <div class="form-group row">
-                                                        <div class="offset-2 col-8">
-                                                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-                                                            <a class="d-block small mt-3" href="deps.php">View Department Wise Stats</a>
-                                                        </div>
-                                                    </div>
-                                                </form>
+          // Check connection
+                                    if ($mysqli === false) {
+                                        die("ERROR: Could not connect. " . $mysqli->connect_error);
+                                    }
+
+          // Escape user inputs for security
+                                    $id = $mysqli->real_escape_string($_REQUEST['sid']);
+
+
+          //Printing values
+                                    $dep=$_POST['city'];
+                                    //echo $dep;
+                                    
+                                    $t1 = 5;
+                                    $tid = $_SESSION['username'];
+                                    $q = "SELECT SUM(latetuition),SUM(latefine),SUM(latehall),SUM(latemess) FROM student WHERE std_dep='$dep'";
+                                    $r = mysqli_query($mysqli, $q);
+                                    while ($row = mysqli_fetch_array($r)) {
+                                        ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4>
+                                                <?php echo $dep ?> Dept. Stats</h4>
+                                            <hr>
+                                        </div>
+                                    </div>
+
+                                    <form>
+                                        <div class="form-group row">
+                                            <label for="username" class="col-4 col-form-label">Late Tuition</label>
+                                            <div class="col-8">
+                                                <input id="username" name="username" value="<?php echo $row['SUM(latetuition)']; ?>" class="form-control here" style="font-weight: bold;"
+                                                    disabled="disabled" type="text">
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label for="name" class="col-4 col-form-label">Late Fine</label>
+                                            <div class="col-8">
+                                                <input id="name" name="name" value="<?php echo $row['SUM(latefine)']; ?>" class="form-control here" style="font-weight: bold;"
+                                                    disabled="disabled" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="text" class="col-4 col-form-label">Late Hall</label>
+                                            <div class="col-8">
+                                                <input id="text" name="dep" value="<?php echo $row['SUM(latehall)']; ?>" class="form-control here" style="font-weight: bold;" disabled="disabled"
+                                                    type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="text" class="col-4 col-form-label">Late Mess</label>
+                                            <div class="col-8">
+                                                <input id="text" name="lvl" value="<?php echo $row['SUM(latemess)']; ?>" class="form-control here" style="font-weight: bold;" disabled="disabled"
+                                                    type="text">
+                                            </div>
+                                        </div>
+
                                     </form>
+
+                                    <?php
+                                    $dataPoints = array(
+                                        array("label" => "Late Tuition Fees", "y" => $row['SUM(latetuition)']),
+                                        array("label" => "Late Fines", "y" => $row['SUM(latefine)']),
+                                        array("label" => "Late Hall Bills", "y" => $row['SUM(latehall)']),
+                                        array("label" => "Late Mess Bills", "y" => $row['SUM(latemess)'])
+                                    );
+                                }
+
+          // Close connection
+                                $mysqli->close();
+          //include 'chartcheck.php';
+                                ?>
+
+                                        <!DOCTYPE HTML FOR Chart>
+                                        <html>
+
+                                        <head>
+                                            <script>
+                                                window.onload = function () {
+
+                                                    var chart = new CanvasJS.Chart("chartContainer", {
+                                                        animationEnabled: true,
+                                                        exportEnabled: true,
+                                                        title: {
+                                                            text: "Numbers of Late Payments of <?php echo $dep ?> Dept."
+                                                        },
+                                                        subtitles: [{
+                                                            text: ""
+                                                        }],
+                                                        data: [{
+                                                            type: "pie",
+                                                            showInLegend: "true",
+                                                            legendText: "{label}",
+                                                            indexLabelFontSize: 16,
+                                                            indexLabel: "{label} - #percent%",
+                                                            yValueFormatString: "#,##0",
+                                                            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                                                        }]
+                                                    });
+                                                    chart.render();
+
+                                                }
+                                            </script>
+                                        </head>
+
+                                        <body>
+                                            <br>
+                                            <br>
+                                            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                                            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                                        </body>
                                 </div>
                             </div>
                         </div>
