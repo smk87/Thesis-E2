@@ -25,7 +25,9 @@ if (isset($_GET['logout'])) {
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title><cms:get_custom_field 'sitename' masterpage='couch/globals.php' /></title>
+    <title>
+        <cms:get_custom_field 'sitename' masterpage='couch/globals.php' />
+    </title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/plugins/icheck/skins/all.css" rel="stylesheet">
@@ -68,7 +70,8 @@ if (isset($_GET['logout'])) {
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="<cms:get_custom_field 'sitelogo' masterpage='couch/globals.php' />" alt="homepage" class="dark-logo" />
+                            <img src="<cms:get_custom_field 'sitelogo' masterpage='couch/globals.php' />" alt="homepage"
+                                class="dark-logo" />
                             <!-- Light Logo icon -->
                         </b>
                         <!--End Logo icon -->
@@ -317,25 +320,27 @@ if (isset($_GET['logout'])) {
                                                 <div class="form-group row">
                                                     <label for="username" class="col-2 col-form-label">Student ID</label>
                                                     <div class="col-8">
-                                                        <input type="text" id="fname" name="sid" required placeholder="Enter ID">
+                                                        <input type="text" id="fname" name="sid" placeholder="Enter ID">
                                                     </div>
                                                 </div>
                                                 <h3>Filter Options:</h3>
-                                                <input type="checkbox" name="check_list[]" checked="checked" value="all"><label> No Filter</label><br />
+                                                <input type="checkbox" name="check_list[]" checked="checked" value="all"><label>
+                                                    No Filter</label><br />
                                                 <input type="checkbox" name="check_list[]" value="np"><label> Not Paid</label><br />
                                                 <input type="checkbox" name="check_list[]" value="p"><label> Paid</label><br />
                                                 <p>
-                                                <h4>Bill Type(Select One):</h4>
-                                                <input type="radio" name="check" value="t"><label> Tuition</label><br />
-                                                <input type="radio" name="check" value="f"><label> Fine</label><br />
-                                                <input type="radio" name="check" value="m"><label> Mess Bill</label><br />
-                                                <input type="radio" name="check" value="h"><label> Hall Bill</label><br />
+                                                    <h4>Bill Type(Select One):</h4>
+                                                    <input type="radio" name="check" value="t"><label> Tuition</label><br />
+                                                    <input type="radio" name="check" value="f"><label> Fine</label><br />
+                                                    <input type="radio" name="check" value="m"><label> Mess Bill</label><br />
+                                                    <input type="radio" name="check" value="h"><label> Hall Bill</label><br />
 
-                                                <div class="form-group row">
-                                                    <div class="offset-2 col-8">
-                                                        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                                    <div class="form-group row">
+                                                        <div class="offset-2 col-8">
+                                                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                                            <a class="d-block small mt-3" href="bulk.php">Bulk Search</a>
+                                                        </div>
                                                     </div>
-                                                </div>
 
                                             </form>
                                         </div>

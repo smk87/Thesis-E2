@@ -30,6 +30,7 @@ if (isset($_GET['logout'])) {
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/plugins/icheck/skins/all.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -40,6 +41,7 @@ if (isset($_GET['logout'])) {
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body class="fix-sidebar fix-header card-no-border">
@@ -310,205 +312,50 @@ if (isset($_GET['logout'])) {
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Student ID</th>
-                                                <th>Bill Type</th>
-                                                <th>Bill Info</th>
-                                                <th>Bill Amount</th>
-                                                <th>Bill Due Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                <form action="bulk_show.php" method="post">
 
-                                            <?php 
-                             /* Attempt MySQL server connection. Assuming you are running MySQL
-        server with default setting (user 'root' with no password) */
-                                        $mysqli = new mysqli("localhost", "root", "", "th");
-                                              
-                                        if(isset($_POST['sid'])){
-                                            $sid=$_POST['sid'];
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form>
 
-                                            if(!empty($_POST['check_list'])){
-                                                // Loop to store and display values of individual checked checkbox.
-                                                foreach($_POST['check_list'] as $selected){
-                                                //echo $selected."</br>";
-                                                if($selected=='all'){
-                                                    $f="All";
-                                                    if(!empty($f)){
-                                                        //echo $f1;
-                                                    }
-                                                }
-                                                if($selected=='np'){
-                                                    $f1="Not Paid";
-                                                    if(!empty($f1)){
-                                                        //echo $f1;
-                                                    }
-                                                }
-                                                if($selected=='p'){
-                                                    $fp="Paid";
-                                                }
-                                                }
-                                                }
-                                                
-                                                if(isset($_POST['check'])){
-                                                $fr=$_POST['check'];
-                                               // echo $fr;
-                                                }
-                                        }
-                                        else{
-                                            $sid=$_GET['v'];
-                                        }
+                                                <h4>Select Department:</h4><input type="text" name="city" list="cityname">
+                                                <datalist id="cityname">
+                                                    <option value="CE">
+                                                    <option value="EWCE">
+                                                    <option value="Arch">
+                                                    <option value="PME">
+                                                    <option value="EECE">
+                                                    <option value="CSE">
+                                                    <option value="BME">
+                                                    <option value="ME">
+                                                    <option value="AE">
+                                                    <option value="NAME">
+                                                    <option value="IPE">
+                                                    <option value="NSE">
+                                                    <option value="ALL">
+                                                </datalist>
+                                                <p>
+                                                    <h4>Select Level:</h4><input type="text" name="level" list="level">
+                                                    <datalist id="level">
+                                                        <option value="1">
+                                                        <option value="2">
+                                                        <option value="3">
+                                                        <option value="4">
+                                                    </datalist>
 
-        // Check connection
-                                        if ($mysqli === false) {
-                                            die("ERROR: Could not connect. " . $mysqli->connect_error);
-                                        }
-
-        //Printing values
-                                        $tid = $_SESSION['username'];
-                                        $q = "SELECT * FROM bill WHERE bill_stdid='$sid'";
-                                        $qp = " AND bill_sts='Paid'";
-                                        $q1 = " AND bill_sts='Not Paid'";
-                                        $q2 = " AND bill_type='Tuition'";
-                                        $q3 = " AND bill_type='Fine'";
-                                        $q4 = " AND bill_type='Mess Bill'";
-                                        $q5 = " AND bill_type='Hall Bill'";
-                                        $ql= " ORDER BY bill_duedate DESC";
-                                        
-                                        if(!empty($fp) && !empty($f1)){
-                                            $q=$q;
-                                            //echo $q;
-                                        }
-                                        else if(!empty($fp)){
-                                            $q=$q.$qp;
-                                            //echo $q;
-                                        }
-                                        else if(!empty($f1)){
-                                            $q=$q.$q1;
-                                            //echo $q;
-                                        }
-                                        if(!empty($fr)){
-
-                                        if($fr=='t'){
-                                            $q=$q.$q2;
-                                            //echo $q;
-                                        }
-                                        if($fr=='f'){
-                                            $q=$q.$q3;
-                                            //echo $q;
-                                        }
-                                        if($fr=='m'){
-                                            $q=$q.$q4;
-                                           // echo $q;
-                                        }
-                                        if($fr=='h'){
-                                            $q=$q.$q5;
-                                            //echo $q;
-                                        }
-                                    }
-                                        $q=$q.$ql;
-
-                                        if(!empty($f)){
-                                            $q="SELECT * FROM bill WHERE bill_stdid='$sid' ORDER BY bill_duedate DESC";
-                                        }
-                                        //echo $q;
-
-                                        $r = mysqli_query($mysqli, $q);
-                                        while ($row = mysqli_fetch_array($r)) {
-                                            ?>
-
-                                            <tr>
-                                                <td><a>
-                                                        <?php echo $row['bill_stdid']; ?></a></td>
-                                                <td>
-                                                    <?php echo $row['bill_type']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['bill_info']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $row['bill_amt']; ?>
-                                                </td>
-                                                <td><span class="text-muted"><i class="fa fa-clock-o"></i>
-                                                        <?php echo $row['bill_duedate']; ?> </span>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                if($row['bill_sts']=='Paid'){?>
-                                                    <div class="label label-table label-success">Paid</div>
-                                                    <?php }
-                                                    else{
-                                                    ?>
-                                                    <div class="label label-table label-danger">Not Paid</div>
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <form action="edit.php" method="POST">
-
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="username" name="bill_stdid"
-                                                                    value="<?php echo $row['bill_stdid']; ?>" class="form-control here"
-                                                                    style="font-weight: bold;" type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="name" name="billtype" value="<?php echo $row['bill_type']; ?>"
-                                                                    class="form-control here" style="font-weight: bold;"
-                                                                    type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="text" name="billinfo" value="<?php echo $row['bill_info']; ?>"
-                                                                    class="form-control here" style="font-weight: bold;"
-                                                                    type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="text" name="billamt" value="<?php echo $row['bill_amt']; ?>"
-                                                                    class="form-control here" style="font-weight: bold;"
-                                                                    type="text">
-                                                            </div>
-                                                        </div>
-                                                        <div style="display: none;"> class="form-group row">
-                                                            <div class="col-8">
-                                                                <input type="hidden" id="email" name="bill_duedate"
-                                                                    value="<?php echo $row['bill_duedate']; ?>" class="form-control here"
-                                                                    style="font-weight: bold;" type="text">
-                                                            </div>
-                                                        </div>
-
-                                                        <input type="hidden" name="bill_id" value="<?php echo $row['bill_id']; ?>">
-
+                                                    <p>
                                                         <div class="form-group row">
-                                                            <div class="offset-0 col-8">
-                                                                <button name="submit" type="submit" class="btn btn-primary">Edit</button>
+                                                            <div class="offset-2 col-8">
+                                                                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
                                                             </div>
                                                         </div>
 
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                            </form>
+                                        </div>
+                                    </div>
 
-                                            <?php
 
-                                    }
-
-          // Close connection
-                                    $mysqli->close();
-                                    ?>
-
-                                        </tbody>
-                                    </table>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -562,10 +409,14 @@ if (isset($_GET['logout'])) {
     <script src="../assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <!-- icheck -->
+    <script src="../assets/plugins/icheck/icheck.min.js"></script>
+    <script src="../assets/plugins/icheck/icheck.init.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
 </body>
 
 </html>

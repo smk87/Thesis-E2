@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
+
 $conn = new mysqli("localhost", "root", "", "th");
 
 // Check connection

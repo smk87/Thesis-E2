@@ -329,41 +329,18 @@ if (isset($_GET['logout'])) {
                              /* Attempt MySQL server connection. Assuming you are running MySQL
         server with default setting (user 'root' with no password) */
                                         $mysqli = new mysqli("localhost", "root", "", "th");
+
+                                        if(isset($_POST['city'])){
+                                            $fr=$_POST['city'];
+                                            //echo $fr;
+                                            }
+
+                                        if(isset($_POST['level'])){
+                                                $fq=$_POST['level'];
+                                               // echo $fq;
+                                                }   
                                               
-                                        if(isset($_POST['sid'])){
-                                            $sid=$_POST['sid'];
-
-                                            if(!empty($_POST['check_list'])){
-                                                // Loop to store and display values of individual checked checkbox.
-                                                foreach($_POST['check_list'] as $selected){
-                                                //echo $selected."</br>";
-                                                if($selected=='all'){
-                                                    $f="All";
-                                                    if(!empty($f)){
-                                                        //echo $f1;
-                                                    }
-                                                }
-                                                if($selected=='np'){
-                                                    $f1="Not Paid";
-                                                    if(!empty($f1)){
-                                                        //echo $f1;
-                                                    }
-                                                }
-                                                if($selected=='p'){
-                                                    $fp="Paid";
-                                                }
-                                                }
-                                                }
-                                                
-                                                if(isset($_POST['check'])){
-                                                $fr=$_POST['check'];
-                                               // echo $fr;
-                                                }
-                                        }
-                                        else{
-                                            $sid=$_GET['v'];
-                                        }
-
+                                        
         // Check connection
                                         if ($mysqli === false) {
                                             die("ERROR: Could not connect. " . $mysqli->connect_error);
@@ -371,51 +348,29 @@ if (isset($_GET['logout'])) {
 
         //Printing values
                                         $tid = $_SESSION['username'];
-                                        $q = "SELECT * FROM bill WHERE bill_stdid='$sid'";
-                                        $qp = " AND bill_sts='Paid'";
-                                        $q1 = " AND bill_sts='Not Paid'";
+                                        $q = "SELECT * FROM bill NATURAL JOIN student where bill_stdid=std_id AND std_dep='$fr' AND lvl='$fq'";
+                                        $qp = "SELECT * FROM bill NATURAL JOIN student where bill_stdid=std_id AND std_dep='$fr'";
+                                        $q1 = "SELECT * FROM bill NATURAL JOIN student where bill_stdid=std_id AND lvl='$fq'";
                                         $q2 = " AND bill_type='Tuition'";
                                         $q3 = " AND bill_type='Fine'";
                                         $q4 = " AND bill_type='Mess Bill'";
                                         $q5 = " AND bill_type='Hall Bill'";
                                         $ql= " ORDER BY bill_duedate DESC";
                                         
-                                        if(!empty($fp) && !empty($f1)){
+                                        if(!empty($fr) && !empty($fq)){
                                             $q=$q;
                                             //echo $q;
                                         }
-                                        else if(!empty($fp)){
-                                            $q=$q.$qp;
+                                        else if(!empty($fr)){
+                                            $q=$qp;
                                             //echo $q;
                                         }
-                                        else if(!empty($f1)){
-                                            $q=$q.$q1;
+                                        else if(!empty($fq)){
+                                            $q=$q1;
                                             //echo $q;
                                         }
-                                        if(!empty($fr)){
-
-                                        if($fr=='t'){
-                                            $q=$q.$q2;
-                                            //echo $q;
-                                        }
-                                        if($fr=='f'){
-                                            $q=$q.$q3;
-                                            //echo $q;
-                                        }
-                                        if($fr=='m'){
-                                            $q=$q.$q4;
-                                           // echo $q;
-                                        }
-                                        if($fr=='h'){
-                                            $q=$q.$q5;
-                                            //echo $q;
-                                        }
-                                    }
+                                        
                                         $q=$q.$ql;
-
-                                        if(!empty($f)){
-                                            $q="SELECT * FROM bill WHERE bill_stdid='$sid' ORDER BY bill_duedate DESC";
-                                        }
                                         //echo $q;
 
                                         $r = mysqli_query($mysqli, $q);
