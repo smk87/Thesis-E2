@@ -342,13 +342,17 @@ if (isset($_GET['logout'])) {
                                                         <option value="3">
                                                         <option value="4">
                                                     </datalist>
-
                                                     <p>
-                                                        <div class="form-group row">
-                                                            <div class="offset-2 col-8">
-                                                                <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                                        <h4>Bill Type(Select One):</h4>
+                                                        <input type="radio" name="check" value="p"><label> Paid</label><br />
+                                                        <input type="radio" name="check" value="np"><label> Not Paid</label><br />
+
+                                                        <p>
+                                                            <div class="form-group row">
+                                                                <div class="offset-2 col-8">
+                                                                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
                                             </form>
                                         </div>

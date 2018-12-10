@@ -351,10 +351,8 @@ if (isset($_GET['logout'])) {
                                         $q = "SELECT * FROM bill NATURAL JOIN student where bill_stdid=std_id AND std_dep='$fr' AND lvl='$fq'";
                                         $qp = "SELECT * FROM bill NATURAL JOIN student where bill_stdid=std_id AND std_dep='$fr'";
                                         $q1 = "SELECT * FROM bill NATURAL JOIN student where bill_stdid=std_id AND lvl='$fq'";
-                                        $q2 = " AND bill_type='Tuition'";
-                                        $q3 = " AND bill_type='Fine'";
-                                        $q4 = " AND bill_type='Mess Bill'";
-                                        $q5 = " AND bill_type='Hall Bill'";
+                                        $q2 = " AND bill_sts='Paid'";
+                                        $q3 = " AND bill_sts='Not Paid'";
                                         $ql= " ORDER BY bill_duedate DESC";
                                         
                                         if(!empty($fr) && !empty($fq)){
@@ -369,6 +367,18 @@ if (isset($_GET['logout'])) {
                                             $q=$q1;
                                             //echo $q;
                                         }
+                                        if(isset($_POST['check'])){
+                                            $t=$_POST['check'];
+                                            //echo $t;
+                                            }
+                                        
+                                            if($t=='p'){
+                                                $q=$q.$q2;
+                                            }
+                                            else if($t=='np'){
+                                                $q=$q.$q3;
+                                                //echo $t;
+                                            }
                                         
                                         $q=$q.$ql;
                                         //echo $q;
